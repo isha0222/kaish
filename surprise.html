@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Love 💖</title>
+
+<style>
+
+  html {
+  overflow: hidden;
+}
+/* ---------------- BODY & BACKGROUND ---------------- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  color: white;
+
+  overflow: hidden;   /* 🔥 FULL scroll remove */
+  height: 100vh;
+
+  background: url(ik5.jpg);
+  background-size: cover;
+  background-position: center;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: url(ik5.jpg);
+  background-size: cover;
+  background-position: center;
+
+  filter: blur(6px);
+  z-index: -1;
+}
+
+/* ---------------- TEXT ---------------- */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
+  margin: 5vh 0 2vh 0;
+  letter-spacing: 1px;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  animation: fadeSlide 2s ease;
+  padding-top: 150px;
+}
+
+p {
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px;
+  line-height: 1.4;
+  margin: 0 5%;
+}
+
+/* ---------------- BUTTONS ---------------- */
+button {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.finalBtn {
+  background: white;
+  color: #ff4d6d;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+   padding:12px 20px;
+  margin: 1vh 2vw;
+  font-family: 'Great Vibes', cursive;
+}
+
+.noBtn {
+  background: hotpink;
+  color: white;
+  border: none;
+  font-size: 18px;
+   padding:12px 20px;
+  border-radius: 30px;
+  position: absolute;
+  font-family: 'Great Vibes', cursive;
+  z-index: 10;
+}
+
+/* ---------------- HEARTS ---------------- */
+/* HEARTS */
+.heart{
+  position: fixed;
+  top: -20px;
+  font-size: 2vw; /* Responsive size instead of fixed 22px */
+  animation: fall 3s linear forwards;
+}
+
+/* FALL ANIMATION */
+@keyframes fall{
+  0% { transform: translateY(-20px); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px){
+  .heart{
+    font-size: 5vw; /* slightly bigger on small screens */
+  }
+}
+
+/* ---------------- SECRET PAGE ---------------- */
+.secret-btn {
+  position: fixed;
+  bottom: 3vh;
+  right: 3vw;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #ffffff;
+  color: #ff4d6d;
+  cursor: pointer;
+  font-family: 'Great Vibes', cursive;
+  font-size: 15px;
+  z-index: 100;
+}
+
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  font-size: 50px;
+  animation: pulse 1s infinite;
+  z-index: 999;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.secret-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3, #7afcff);
+  display: none;
+  justify-content: center;
+  align-items: center;
+   z-index: 9999; /* 🔥 upar lai ja */
+  padding: 2vw;
+  box-sizing: border-box;
+  overflow-y: hidden;
+}
+
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 450px;
+  height: 400px;            /* 🔥 increased height */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.side-buttons {
+  display:flex;
+  justify-content: space-around;
+  gap:5px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+
+.switch-btn {
+  padding: 6px 10px;
+  border:none;
+  border-radius:10px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  font-size: 18px;    /* smaller */
+  flex:1;
+  min-width: 80px;
+}
+
+.message {
+  flex: 1;
+  overflow-y: auto;
+  line-height: 1.6;
+  font-size: 1rem;
+  padding: 10px;
+  color: black;
+}
+
+
+.close-btn {
+  position:absolute;
+  top:5px;
+  right:8px;
+  font-size: 1.2rem;
+  background: rgba(0,0,0,0.1);
+  padding:4px 8px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.close-btn:hover {
+  background:#ff4d6d;
+  color:white;
+}
+
+/* PHOTO */
+#loveMsg img {
+  width: 240px;
+  max-width: 250px;
+  height: 290px;
+  border-radius: 12px;
+  margin: 5px 0;
+}
+#loveMsg button {
+  margin:5px 2px;
+  padding:5px 8px;
+  font-size:12px;
+}
+.navBtn {
+  margin: 5px 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.navBtn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff4d6d, #ff85a2);
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 600px){
+  .container { width: 95%; padding: 3vw; }
+  .switch-btn { font-size: 3.5vw; padding: 5px 8px; }
+  .message, #loveMsg { font-size: 14px; }
+  .close-btn { font-size: 4vw; }
+}
+
+</style>
+</head>
+<body>
+
+<h1>I Love You Forever ❤️</h1>
+<p>We have been together for 4 Beautiful Years 💖<br>
+    Through every moment, I still choose you ❤️<br>
+    Forever Yours 💍</p>
+
+<button onclick="sayYes()" class="finalBtn">Yes ❤️</button>
+<button id="noBtn" class="noBtn">No 😅</button>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SECRET BUTTON -->
+<button class="secret-btn" onclick="checkPassword()">Secret ❤️</button>
+
+<!-- LOADER -->
+<div id="loader" class="loader">❤️</div>
+
+<!-- SECRET FULL PAGE -->
+<div id="secretPage" class="secret-page">
+  <div class="container">
+    <span class="close-btn" onclick="closePage()">✖</span>
+
+    <div class="side-buttons">
+      <button class="switch-btn" onclick="showShort()">💖 Short</button>
+      <button class="switch-btn" onclick="showLong()">📝 Long</button>
+      <button class="switch-btn" onclick="showPhoto()">📸 Photo</button>
+    </div>
+
+    <div id="message" class="message">
+      💌  Thank You So Much Bachaaa❤️<br>👉 Hu Tamne Bau Badhu Prem Karu Chu Mara Patiji ❤️💍..
+    </div>
+
+    <div id="loveMsg" class="message" style="flex:1;"></div>
+  </div>
+
+  <audio id="secretAudio" loop>
+  <source src="audio5.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+/* HEARTS */
+setInterval(createHeart, 500);
+function createHeart() {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random()*100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(), 3000);
+}
+
+/* YES BUTTON */
+function sayYes() {
+  document.body.innerHTML = `
+  <div style="
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    flex-direction:column;
+    color:white;
+    font-family:'Great Vibes', cursive;
+  ">
+    <h1 style="font-size:26px; padding-top:0px">
+      I LOVE YOU SO MUCH ❤️
+    </h1>
+
+    <button onclick="openStory()" style="
+      padding:12px 25px;
+      font-size:14px;
+      border:none;
+      border-radius:25px;
+      background:white;
+      color:#ff4d6d;
+      cursor:pointer;
+    ">
+      Press Me 💖
+    </button>
+  </div>
+  `;
+}
+
+function openStory() {
+  window.location.href = "story.html"; 
+}
+
+/* NO BUTTON RUNAWAY */
+const noBtn = document.getElementById("noBtn");
+noBtn.style.left="50%";
+noBtn.style.top="70%";
+noBtn.addEventListener("mouseover", moveBtn);
+noBtn.addEventListener("click", moveBtn);
+
+function moveBtn(){
+  let x = Math.random()*(window.innerWidth-100);
+  let y = Math.random()*(window.innerHeight-50);
+  noBtn.style.left = x+"px";
+  noBtn.style.top = y+"px";
+}
+
+/* SECRET PAGE */
+function checkPassword() {
+  let pass = prompt("Enter our secret password ❤️");
+
+  if(pass === "kaish1411") {
+
+    document.getElementById("loader").style.display = "flex";
+
+    setTimeout(()=>{
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("secretPage").style.display = "flex";
+
+      let audio = document.getElementById("secretAudio");
+      audio.play().catch(()=>{});  // 🔥 autoplay safe
+
+    },1500);
+
+  } else {
+    alert("Dingo Dingo😜....");
+  }
+}
+
+function closePage() {
+  document.getElementById("secretPage").style.display = "none";
+
+let audio = document.getElementById("secretAudio");
+audio.volume = 0;
+
+audio.play();
+
+let vol = 0;
+let fade = setInterval(()=>{
+  if(vol < 1){
+    vol += 0.05;
+    audio.volume = vol;
+  } else {
+    clearInterval(fade);
+  }
+},100);
+}
+
+/* SHORT / LONG MESSAGES */
+function showShort() {
+  document.getElementById("message").style.display = "block";
+  document.getElementById("loveMsg").style.display = "none";
+  document.getElementById("message").innerHTML = `
+  Hey my Lotte Choco Pie 🍫💖<br>
+  I give you 5 Star for always taking care of me 🥺💞<br>
+  I don't need any KitKat break from you 😚💘<br>
+  You are the most precious GEMS of my life ❤️💎<br>
+  My only Dark Fantasy is to be with you always 🌙💭 <br>
+  You are the reason for my Good Day happiness 💖🌸<br>
+  You are the Dairy Milk that makes my life sweet 🍯💕<br>
+  You make my heart Fuse everytime I see you 😍🔥
+  `;
+}
+
+function showLong() {
+  document.getElementById("message").style.display = "block";
+  document.getElementById("loveMsg").style.display = "none";
+  document.getElementById("message").innerHTML = `
+  💖 Our Story — From Strangers to Forever 💖 <br>
+It all started on 15th October 2021… <br>  
+The day you saw me for the very first time 👀  
+I didn’t know…But for you, something had already begun 💞  <br>
+
+You tried to find me everywhere — Instagram, Snapchat, WhatsApp, through family , through people …  
+But somehow, fate kept hiding me from you  <br>
+
+And I…  
+I had no idea that someone out there was searching for me like this 🥺  
+Then suddenly… destiny decided it was time💖 <br>
+
+Later, during internship, we saw each other again.  
+I even told Priyaa, “He belongs to my community…” <br>
+
+We saw each other again during our festival   
+And this time, you finally found my Instagram  
+Still… we were just two simple known people <br>
+
+We connected on Instagram…  <br>
+Started talking slowly   
+And without realizing it, I became comfortable with you  
+So comfortable… that I started sharing everything 💬❤️<br>
+
+I don’t know how…But you became my habit 💖<br>
+
+Navratri — Where Everything Changed <br>  
+That Navratri…  
+We planned to meet for the first time...  
+We played garba together every day💞  
+We matched outfits...we laughed...we stayed together<br>  
+But still… I didn’t realize that I was falling for you<br>
+
+Others noticed it before me…  
+But my heart wasn’t ready to accept it<br>
+
+The First Fight… The First Realization 😢 <br> 
+Then came our first fight…  
+We both cried...we both felt the pain..  
+And that’s when it hit me —  
+You weren’t just someone… you were my someone <br>  
+
+The Proposal 💍<br>
+On 8th October…  
+You finally confessed your feelings.  
+But I was scared... 
+Scared of love,scared of heartbreak 😢<br> 
+I asked for time.  
+But you didn’t give me that option ❌ <br> 
+You said —  
+“If it’s yes, I stay forever  
+If it’s no, I’ll never come back”  <br>
+
+That moment… I didn’t even understand what I was feeling <br> 
+But I knew one thing —  
+Life without you didn’t feel right anymore.  
+So… I said yes ❤️<br> 
+
+Growing Together  <br>
+Slowly… we got closer.  
+We started understanding each other more <br>  
+Yes… we fought a lot. 
+Yes… I made mistakes… many mistakes.  
+I hurt you… again and again<br>  
+But every single time…  
+You forgave me<br>
+
+Even today, I know some memories still hurt you  
+And I’m truly sorry for that <br> 
+You always tried to guide me,  
+Tried to protect me, 
+Tried to show me what’s right and wrong  
+But I didn’t always listen.  
+And still…  
+You stayed ❤️<br>
+
+My Safe Place 🏡 <br>
+In every relationship in my life…  
+I’ve been hurt … I’ve been broken<br> 
+But in my worst times…  
+When no one was there <br> 
+You were  
+
+That’s when I realized —  
+You are not just part of my life…  
+You are my home 🏡💖<br>
+
+Because of You…  <br>
+Before you…I was scared of love <br> 
+After you…I started believing in it again<br>
+
+Before you…I had no support <br>
+After you…I became fearless <br>
+
+Today, I walk like a strong girl <br>
+Because I know —You’re always behind me <br>  
+
+The Way You Know Me, 
+You understand me like no one else<br> 
+From just my voice…  
+You know if I’m upset,angry,overthinking… <br> 
+You change my mood in seconds 🌈<br>  
+I don’t know how you do it…  
+But you do it every time <br>
+
+My Whole World 🌏<br> 
+I’m not perfect…<br>
+But for you… I’m ready to become better  
+Because all I want is —A lifetime with you<br>
+
+I’ve already imagined my entire future with you<br> 
+Because the truth is…  <br>
+👉 If you are there… I exist... 
+👉 Without you… I am nothing 💔<br> 
+
+Our Dream  <br>
+We always said —No matter what happens… <br> 
+No matter how many fights.. 
+No matter how hard it gets..<br>  
+We will stay together❤️❤️ <br>  
+
+People tried to come between us<br>
+Tried to break us 💔  
+But they didn’t know — <br>
+There is no “breakup” in our story ❤️<br>  
+
+Best Friends First… Always<br>
+Before anything…  
+We are best friends 💞 <br>
+
+You fulfilled even the smallest things I said casually 
+Sometimes I asked for little… <br> 
+And you gave me more than I ever imagined 🥰<br>
+
+The Hardest Phase <br>
+When it was time to talk to family…  
+I was scared,stressed,breaking inside<br> 
+
+But you said —  
+“Don’t worry, I’m here. I’ll handle everything”<br>  
+
+When I was losing hope…  You held me stronger 🤗<br>
+
+My one dream was —  
+If I ever marry… it will be you 💍💞<br>
+
+And… That dream is finally coming true💖<br> 
+
+Today…  <br>
+From strangers….To soulmates 💞  
+From unknown…To inseparable <br> 
+Yes, our journey was never easy 
+But maybe that’s what made it so special 💖✨  <br>
+
+Because without challenges…  
+Love doesn’t feel this deep 💞  <br>
+
+Forever❤️<br>
+I just want to say… <br>
+
+Thank you for loving me ❤️  
+Thank you for understanding me 🤗  
+Thank you for handling my mood swings 😅, anger 😡, and everything ❤️ <br> 
+
+No matter how much I say…  
+It will always feel less 🥺<br>
+
+I love you so much, bachaa 💞💖 <br>  
+From morning to night…  
+In my good times and bad times …  <br>
+
+I just need you ❤️❤️ <br>  
+
+And I promise —  <br>
+No third person,  
+No misunderstanding,  
+Nothing in this world ,  <br>
+Will ever come between us 💞  <br>
+
+We started as strangers… And now we are forever ❤️ 
+  `;
+}
+
+/* PHOTO GALLERY */
+let photos = ["i11.JPG","i12.JPG","ik1.jpg","ik7.jpg","ik8.jpg","ik12.jpg","ik13.jpg","ik14.jpg","k7.jpg"];
+let index = 0;
+
+function showPhoto(){
+  document.getElementById("message").style.display = "none";
+  document.getElementById("loveMsg").style.display = "block";
+  index = 0;
+  updatePhoto();
+}
+
+function updatePhoto(){
+  document.getElementById("loveMsg").innerHTML =
+  "<div style='text-align:center;'>"+
+  "<img src='"+photos[index]+"'><br>"+
+"<button class='navBtn' onclick='prevPhoto()'>💗 Prev</button>"+
+"<button class='navBtn' onclick='nextPhoto()'>Next 💗</button>"+
+  "</div>";
+}
+
+function nextPhoto(){
+  index++;
+  if(index >= photos.length) index = 0;
+  updatePhoto();
+}
+
+function prevPhoto(){
+  index--;
+  if(index < 0) index = photos.length-1;
+  updatePhoto();
+}
+</script>
+
+</body>
+</html>

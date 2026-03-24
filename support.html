@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Always With You</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+    /* Body & Background */
+    body {
+      margin-top: 150px;
+      font-family: Arial, sans-serif;
+     background: linear-gradient(135deg,#ff758c,#ff7eb3);
+      background-size: cover;
+      height: 100%;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: cursive;
+      margin: 20px 0;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+      font-size: clamp(28px, 6vw, 60px);
+    }
+
+    p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: clamp(16px, 4vw, 24px);
+      margin: 10px 0;
+      color: #fff;
+      text-shadow: 0 0 4px #000;
+    }
+
+    .btn-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .love-btn, .next-btn, .surpriseBtn {
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-family:serif;
+      transition: 0.3s;
+    }
+
+    .love-btn, .next-btn {
+      background: white;
+      color: #ff4d6d;
+    }
+
+    .love-btn:hover, .next-btn:hover, .surpriseBtn:hover {
+      transform: scale(1.05);
+    }
+
+    .next-btn { 
+      text-decoration: none; 
+      display: inline-block;
+    }
+
+    .surpriseBtn {
+      background: white;
+      color: #ff4d6d;
+      margin-top: 40px;
+    }
+
+    /* Popup */
+    #lovePopup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    .loveBox {
+      background: white;
+      width: 90%;
+      max-width: 380px;
+      padding: 25px;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .topBtns {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .topBtns button {
+      margin-left: 5px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 12px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+.msg {
+  margin-top: 40px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #222;
+  text-align: left;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+    /* Hearts */
+    .heart {
+      position: absolute;
+      font-size: 10px;
+      animation: float 6s linear infinite;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 0; }
+      30% { opacity: 0.7; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    .heartRain {
+    position: fixed;
+    top: -20px;
+    font-size: 22px;
+    pointer-events: none;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-20px); opacity:1; }
+    100% { transform: translateY(100vh); opacity:0; }
+}
+
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: clamp(24px, 7vw, 50px); }
+      p { font-size: clamp(14px, 4vw, 20px); }
+      .love-btn, .next-btn, .surpriseBtn { font-size: 16px; padding: 12px 25px; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 22px; }
+      p { font-size: clamp(12px, 4vw, 18px); }
+      .love-btn, .next-btn, .surpriseBtn { font-size: 14px; padding: 10px 20px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>You Are Not Alone ❤️</h1>
+
+  <p>Through every storm and sunny day<br>I’ll always be by your side</p>
+
+  <div class="btn-wrap">
+    <button class="love-btn" onclick="openLove()">Click ❤️</button>
+    <a href="future.html"><button class="next-btn">Next ❤️</button></a>
+  </div>
+
+  <div id="lovePopup">
+    <div class="loveBox">
+      <div class="topBtns">
+        <button onclick="showShort()">Short</button>
+        <button onclick="showLong()">Long</button>
+        <button onclick="closeLove()">X</button>
+      </div>
+      <div id="loveMsg" class="msg">Click Short or Long 👆</div>
+    </div>
+  </div>
+
+ <audio id="music" autoplay loop>
+  <source src="audio4.mp3" type="audio/mp3">
+</audio>
+
+  <div style="text-align:center;">
+    <button onclick="startHearts()" class="surpriseBtn">Click For A Surprise 🎁</button>
+  </div>
+
+  <script>
+    // Popup & hearts inside popup
+    function openLove() {
+      document.getElementById("lovePopup").style.display = "flex";
+      createHearts();
+    }
+
+    function closeLove() {
+      document.getElementById("lovePopup").style.display = "none";
+      document.querySelectorAll(".heart").forEach(e => e.remove());
+    }
+
+    function showShort() {
+      document.getElementById("loveMsg").innerHTML = `
+Heyaa bachaa… can I tell you something? 🥺 
+Mane khabar che ke tame badhu easily share karta nathi… and it’s okay, I understand. Pan hu bas etlu kau chu ke… you don’t have to hold everything inside, at least not with me.
+I’m not here to judge you, or question you, or make things harder for you. Hu bas tamari sathe rehva mangu chu… to listen, to understand, and to be someone jeni sathe tame safe feel karo.
+you can tell me anything. Even if it’s small, even if it doesn’t make sense… I’ll still listen.Because for me, it’s not about having perfect conversations… it’s about being there for each other.
+And I really want you to feel that with me — ke tame mara sathe real rahi sako cho, koi pressure ane bik vagar.
+Take your time… I’m not going anywhere.
+Hu chu tamari sathe… always ❤️
+No matter what happens, we’ll face it together. Always ❤️
+      `;
+    }
+
+    function showLong() {
+      document.getElementById("loveMsg").innerText = `
+Hey… please read this slowly…
+I don’t know how much you keep inside, how many things you choose not to say, or how often you pretend that everything is okay… but I can feel it. And it hurts me to know that you might be going through so much without letting anyone in.
+You don’t have to be that strong all the time… not with me.
+I’m not here only for your good days, your smiles, or your happy moments. I’m here for your silence, your breakdowns, your overthinking nights, and every moment when you feel like everything is too much.
+You don’t have to explain everything perfectly… you don’t have to find the right words… just come to me as you are.
+Because to me, you’re not just someone I love… you’re someone I truly care about, deeply. Your pain matters to me, your thoughts matter to me, and your silence… even that speaks to me.
+And I really wish you would let me in a little more… not because I want to fix everything, but because I want to stand beside you while you go through it.
+No matter how hard it gets, no matter how lost you feel… you won’t have to face it alone.
+I’m here… I choose you… in every mood, every phase, every version of you.
+Always ❤️
+You’re not alone… not now, not ever ❤️
+      `;
+    }
+
+    // Hearts inside popup
+    function createHearts() {
+      for (let i = 0; i < 25; i++) {
+        let h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = (5 + Math.random() * 3) + "s";
+        document.getElementById("lovePopup").appendChild(h);
+      }
+    }
+
+    // Surprise falling hearts
+   let rainStarted = false;
+
+function startHearts() {
+    if (rainStarted) return;
+    rainStarted = true;
+    setInterval(createRainHeart, 200);
+}
+
+function createRainHeart() {
+    let heart = document.createElement("div");
+    heart.className = "heartRain";
+    heart.innerText = "❤";
+
+    const colors = ["#ff4d6d","#ff69b4","#ff1493","#ff85a2","#ffffff"];
+    heart.style.color = colors[Math.floor(Math.random()*colors.length)];
+    heart.style.left = Math.random()*100 + "vw";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 3000);
+}
+    // Autoplay audio handling
+   document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById("music");
+
+  // Try to play muted first
+  audio.muted = true;
+  audio.play().catch(()=>console.log("Autoplay blocked"));
+
+  // Once user clicks anywhere, unmute and play
+  function unmuteAudio() {
+    audio.muted = false;
+    audio.play().catch(()=>console.log("Play failed"));
+    document.removeEventListener("click", unmuteAudio);
+  }
+
+  document.addEventListener("click", unmuteAudio);
+});
+  </script>
+
+</body>
+</html>

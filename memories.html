@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+  margin: 0;
+  background-image: url("ik11.jpg");
+  background-repeat: no-repeat;
+  background-position: center center; /* center focus */
+  background-size: cover;             /* full screen cover desktop */
+  position: relative;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Mobile fix for landscape image */
+@media (max-width: 768px) {
+  body {
+    background-size: contain;       /* ensures full image fits mobile screen */
+    background-position: center top; /* important part visible */
+    background-attachment: scroll;  /* smooth scroll on mobile */
+    min-height: 100vh;
+  }
+}
+    /* Blur Background Layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.2);
+  z-index: -1;
+}
+
+    h1 {
+      font-family: cursive;
+      font-size: clamp(28px, 6vw, 60px);
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(16px, 4vw, 22px);
+      margin: 5px 0;
+    }
+
+    /* Image Grid */
+    .images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      /* size vadhari */
+      gap: 12px;
+      margin-top: 20px;
+      padding: 10px;
+    }
+
+    .images img {
+      width: 100%;
+      height: 250px;
+      /* bigger height */
+      object-fit: cover;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+
+    .images img:hover {
+      transform: scale(1.05);
+    }
+
+
+    /* Button */
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: clamp(14px, 3vw, 18px);
+      border: none;
+      border-radius: 10px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      font-family: cursive;
+    }
+
+    button:hover {
+      background: #ff1e4d;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Love Bubble Area */
+    #loveBubbleArea {
+      position: fixed;
+      left: 10px;
+      bottom: 10px;
+      width: 200px;
+      height: 250px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* Love Bubble Glow */
+    .loveBubble {
+      position: absolute;
+      bottom: 0;
+      font-size: 20px;
+      font-weight: bold;
+      animation: floatLove 4s linear forwards;
+
+      /* ✨ Glow effect */
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #ff69b4,
+        0 0 15px #ff1493,
+        0 0 20px #ff1493;
+    }
+
+    @keyframes floatLove {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-220px);
+        opacity: 0;
+      }
+    }
+
+    /* 📱 Small Devices */
+    @media (max-width: 500px) {
+      .images {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 per row mobile */
+      }
+    }
+
+    @media (min-width: 900px) {
+      .images {
+        grid-template-columns: repeat(8, 1fr);
+        /* desktop ma 4 */
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>Our Beautiful Memories ❤️</h1>
+
+  <p>These aren't just memories, they are pieces of my heart...</p>
+  <p>And every piece belongs to you, again and again ❤️</p>
+
+  <!-- Images -->
+  <div class="images">
+    <img src="ik2.jpg">
+    <img src="i1.jpg">
+    <img src="k1.jpg">
+    <img src="i2.jpg">
+    <img src="k2.jpg">
+    <img src="ik6.jpg">
+    <img src="i3.jpg">
+    <img src="k3.jpg">
+    <img src="i4.jpg">
+    <img src="k4.jpg">
+    <img src="ik10.jpg">
+    <img src="i5.jpg">
+    <img src="k5.jpg">
+    <img src="i6.jpg">
+    <img src="ik15.JPG">
+    <img src="k6.jpg">
+    <img src="i7.jpg">
+    <img src="ik16.JPG">
+    <img src="i8.jpg">
+    <img src="k8.jpg">
+    <img src="ik17.JPG">
+    <img src="i9.jpg">
+    <img src="k9.jpg">
+    <img src="ik18.JPG">
+
+  </div>
+
+  <!-- Next Button -->
+  <a href="love.html">
+    <button>Next ❤️</button>
+  </a>
+
+  <!-- Music -->
+  <audio autoplay loop>
+    <source src="audio2.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Love Bubble -->
+  <div id="loveBubbleArea"></div>
+
+  <!-- JS -->
+  <script>
+    function createLoveBubble() {
+      const area = document.getElementById("loveBubbleArea");
+
+      const bubble = document.createElement("div");
+      bubble.className = "loveBubble";
+
+      const colors = [
+        "#ffffff",
+        "#ffd1dc",
+        "#ff69b4",
+        "#ffb6c1",
+        "#ffe4e1",
+        "#fffacd"
+      ];
+
+      bubble.style.color = colors[Math.floor(Math.random() * colors.length)];
+      bubble.innerText = "I Love You ❤️";
+      bubble.style.left = Math.random() * 120 + "px";
+
+      area.appendChild(bubble);
+
+      setTimeout(function () {
+        bubble.remove();
+      }, 4000);
+    }
+
+    setInterval(createLoveBubble, 900);
+  </script>
+
+</body>
+
+</html>
