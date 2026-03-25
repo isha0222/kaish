@@ -202,9 +202,9 @@ body::before {
   </a>
 
   <!-- Music -->
-  <audio autoplay loop>
-    <source src="audio2.mp3" type="audio/mp3">
-  </audio>
+<audio id="music" loop muted>
+  <source src="audio2.mp3" type="audio/mp3">
+</audio>
 
   <!-- Love Bubble -->
   <div id="loveBubbleArea"></div>
@@ -238,6 +238,15 @@ body::before {
     }
 
     setInterval(createLoveBubble, 900);
+    const audio = document.getElementById("music");
+
+const startAudio = () => {
+  audio.muted = false;
+  audio.play().catch(err => console.log(err));
+  document.removeEventListener("click", startAudio);
+};
+
+document.addEventListener("click", startAudio);
   </script>
 
 </body>
